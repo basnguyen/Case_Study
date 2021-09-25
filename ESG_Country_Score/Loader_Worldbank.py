@@ -46,7 +46,7 @@ for key_i in indicators_tofetch:
     
     try:
         # Load into SQL Database
-        con=sqlite3.connect("../SQL_Database/WB_Database.sqlite3")
+        con=sqlite3.connect("../SQL_Database/ESG_Database.sqlite3")
         cur = con.cursor()
         
         to_save=WBDataframe[id_i].rename("value")
@@ -69,10 +69,10 @@ for key_i in indicators_tofetch:
             country,
             date,
             100*(value - min_value) / (max_value -min_value) normalized_value
-        FROM IC_BUS_DFRN_XQ_LATEST  
+        FROM {id_i}_LATEST  
         CROSS JOIN (
             SELECT min(value) min_value, max(value) max_value
-            FROM IC_BUS_DFRN_XQ_LATEST
+            FROM {id_i}_LATEST
         ) 
             """
         )
