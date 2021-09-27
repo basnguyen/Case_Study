@@ -126,9 +126,6 @@ for country_i in list_of_countries:
     pdq = ans_df.loc[ans_df["aic"].idxmin()][0]
     pdqs = ans_df.loc[ans_df["aic"].idxmin()][1]
 
-    pdq = (1, 1, 1)
-    pdqs = (0, 0, 0, 12)
-
     mod = sm.tsa.statespace.SARIMAX(
         y,
         order=pdq,
@@ -142,7 +139,7 @@ for country_i in list_of_countries:
     print(results.summary().tables[1])
 
     results.plot_diagnostics(figsize=(16, 8))
-    plt.savefig(f"./Plots/SARIMA/{country_i}_resuts.pdf")
+    plt.savefig(f"./Plots/SARIMA/{country_i}_results.pdf")
     plt.close()
 
     max_plot_length = 72 if len(y) > 72 else len(y)
