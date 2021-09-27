@@ -3,6 +3,9 @@
 Created on Fri Sep 24 16:08:27 2021
 
 @author: Nguye
+
+Data is loaded by default on ESG_Database_DEV.sqlite3, change to ESG_Database to upload them to the main model, 
+beware it may will overide manual changes to renormalized formulas (e.g indicator from 100 worst to 0 could be reversed and wrongly computed in the main model)
 """
 
 import wbdata
@@ -43,7 +46,7 @@ for key_i in indicators_tofetch:
 
         if len(errors_to_treat) > 0:
             print(errors_to_treat)
-            # raise Exception("Some masters are not in ISO format, control andadd them to mapping or ignore file")
+            # raise Exception("Some masters are not in ISO format, control and add them to mapping or ignore file")
 
         # remove all non ISO country
         WBDataframe.drop(list_non_ISO.tolist(), level=0, axis=0, inplace=True)
